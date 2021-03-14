@@ -110,12 +110,15 @@ void traverseList() {
     if(start==NULL){
         printf("\nEmpty List!");
     }
+   int count=0;
    struct Node* temp;
    temp = start;
    while (temp != NULL) {
       printf("%d --> ",temp->data);
       temp = temp->next;
+      count++;
    }
+   printf("\nTotal no. of nodes: %d",count);
 }
 int main() {
     printf("\nSingly Linked List....\n");
