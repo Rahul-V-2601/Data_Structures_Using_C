@@ -6,13 +6,15 @@ struct Node {
    struct Node *next;
 };
 
-struct Node* start = NULL;
+typedef struct Node NODE;
+
+NODE* start = NULL;
 int new_data;
 int specificNode;
 
 void insertAtBeginning() {
    printf("\nEnter the data to be inserted: "); scanf("%d",&new_data);
-   struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+   NODE* new_node = (NODE*) malloc(sizeof(NODE));
    new_node->data = new_data;
    new_node->next = start;
    start = new_node;
@@ -20,14 +22,14 @@ void insertAtBeginning() {
 
 void insertAtEnd(){
     printf("\nEnter the data to be inserted: "); scanf("%d",&new_data);
-    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
     new_node->data =  new_data;
     new_node->next = NULL;
     if(start==NULL){
         start = new_node;
         return;
     }
-    struct Node *temp = start;
+    NODE *temp = start;
     while(temp->next!=NULL){
         temp = temp->next;
     }
@@ -42,10 +44,10 @@ void insertAfter(){
     }
     printf("\nEnter the data to be inserted: "); scanf("%d",&new_data);
     printf("\nEnter the node after which to be inserted: "); scanf("%d",&specificNode);
-    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
     new_node->data =  new_data;
     
-    struct Node *temp = start;
+    NODE *temp = start;
     while(temp->data!=specificNode){
         temp = temp->next;
          if(temp==NULL){
@@ -65,7 +67,7 @@ void deleteAtBeginning(){
         printf("\nEmpty List! Deletion cannot happen!!!");
         return;
     }
-      struct Node *temp = start;
+      NODE *temp = start;
       start = temp->next;
       free(temp);
 }
@@ -75,7 +77,7 @@ void deleteAtEnd(){
         printf("\nEmpty List! Deletion cannot happen!!!");
         return;
     }
-    struct Node *prev,*temp = start;
+    NODE *prev,*temp = start;
     while(temp->next!=NULL){
         prev = temp;
         temp = temp->next;
@@ -90,7 +92,7 @@ void deleteAtSpecificNode(){
         return;
     }
     printf("\nEnter the node that needs to be deleted: "); scanf("%d",&specificNode);
-    struct Node *prev,*temp = start;
+    NODE *prev,*temp = start;
     while(temp->data!=specificNode){
         prev = temp;
         temp = temp->next;
@@ -111,7 +113,7 @@ void traverseList() {
         printf("\nEmpty List!");
     }
    int count=0;
-   struct Node* temp;
+   NODE* temp;
    temp = start;
    while (temp != NULL) {
       printf("%d --> ",temp->data);
@@ -120,6 +122,7 @@ void traverseList() {
    }
    printf("\nTotal no. of nodes: %d",count);
 }
+
 int main() {
     printf("\nSingly Linked List....\n");
     int selectedOption;
